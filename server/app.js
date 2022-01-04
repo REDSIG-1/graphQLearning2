@@ -10,7 +10,10 @@ const app = express();
 // Allow Cross Origin Requests
 app.use(cors());
 
+// -mongoose.connect('mongodb+srv://admin:admin@cluster0.hcgos.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+
 // connect to mlab db
+// The account I actually have access to
 mongoose.connect('mongodb+srv://sigurdwatt:keyboard1@cluster0.byyyb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
 mongoose.connection.once('open', () => {
     console.log('connected to dB')

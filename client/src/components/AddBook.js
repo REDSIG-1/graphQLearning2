@@ -34,6 +34,8 @@ const AddBook = (props) => {
             },
             refetchQueries: [{ query: getBooksQuery }]
         })
+        setGenre('')
+        setBookName('')
     }
   
 
