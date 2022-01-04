@@ -69,8 +69,8 @@ const AddBook = (props) => {
             </select>
             
             </div>
-
-            <button>+</button>
+            <br/>
+            <button>Add Book</button>
 
         </form>
           

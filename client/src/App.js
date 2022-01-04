@@ -1,12 +1,14 @@
 import React from 'react';
 import ApolloClient from 'apollo-boost'
 import { ApolloProvider } from 'react-apollo'
+import './App.css'
 // import { Switch ,Route, Router } from 'react-router-dom';
 
 // components
 import BookList from './components/BookList'
 import AddBook from './components/AddBook'
 import Books from './components/Books'
+import AddAuthor from './components/AddAuthor'
 
 
 // apollo client setup
@@ -21,6 +23,8 @@ function App() {
             <h1>Ninja's Reading List</h1>
             <BookList />
             <AddBook />
+            <AddAuthor />
+
         </div>
       </ApolloProvider>
     // <ApolloProvider client={client}>
