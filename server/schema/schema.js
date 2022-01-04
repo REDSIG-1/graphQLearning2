@@ -50,7 +50,7 @@ const BookType  = new GraphQLObjectType({
     })
 })
 
-// Type relations!  SHowing GQL that authors have books
+// Type relations!  Showing GQL that authors have books
 
 const AuthorType  = new GraphQLObjectType({
     name: 'Author',

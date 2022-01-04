@@ -8,6 +8,8 @@ import {flowRight as compose} from 'lodash';
 const AddAuthor = (props) => {
 
     const [ authorName, setAuthorName ] = useState()
+    const [ authorAge, setAuthorAge ] = useState()
+
 
     // function displayAuthors(){
     //     var data = props.getAuthorsQuery;
@@ -32,7 +34,8 @@ const AddAuthor = (props) => {
         //     },
         //     refetchQueries: [{ query: getBooksQuery }]
         // })
-        setAuthorName('')
+        setAuthorName('');
+        setAuthorAge('')
     }
   
 
@@ -40,11 +43,20 @@ const AddAuthor = (props) => {
         <form id="add-author" onSubmit={e => { handleSubmit(e) }}>
 
             <div className="field">
-                <label>Authors Name:</label>
+                <label>Author's Name:</label>
                 <input 
                     type="text" 
                     onChange={ (e) => setAuthorName( e.target.value )} 
                     value={authorName}
+                />
+            </div>
+
+            <div className="field">
+                <label>Author's Age:</label>
+                <input 
+                    type="text" 
+                    onChange={ (e) => setAuthorAge( e.target.value )} 
+                    value={authorAge}
                 />
             </div>
 
@@ -59,6 +71,6 @@ const AddAuthor = (props) => {
 // Here we are binding several different queries to one component
 export default compose(
     // graphql(getAuthorsQuery, {name: "getAuthorsQuery"}),
-    // graphql(addBookMutation, {name: "addBookMutation"}),
+    // graphql(addAuthorMutation, {name: "addAuthorMutation"}),
 
 )( AddAuthor )
