@@ -11,9 +11,9 @@ const app = express();
 app.use(cors());
 
 // connect to mlab db
-mongoose.connect('mongodb+srv://admin:admin@cluster0.hcgos.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://sigurdwatt:keyboard1@cluster0.byyyb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
 mongoose.connection.once('open', () => {
-    console.log('conoected to dB')
+    console.log('connected to dB')
 })
 
 // bind express with graphql

@@ -16,6 +16,9 @@ Now go to `localhost:4000/graphql`
 
 As we have passed `graphiql: true` into the app.use function we will be able to interact with GQL using the graphiql tool!
 
+To access graphiql visit here: `http://localhost:4000/graphql`
+
+
 
 ### Example Query
 
