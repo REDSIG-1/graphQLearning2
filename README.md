@@ -34,9 +34,27 @@ in client directory run `npm start`
 }
 
 
+{
+	books{
+    name 
+  }
+}
+
 In the docs in graphiql you can explore the root queries which are of course evident in the schema.js
 
 So root queries could be: book, author, books, authors.
+
+
+#### Example Mutation
+
+mutation {
+  addPublisher(name: "Pengiun", location: "London"){
+		name
+    location
+  }
+}
+
+
 
 
 ##### Current Eposide

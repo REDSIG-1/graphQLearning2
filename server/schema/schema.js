@@ -2,6 +2,7 @@ const graphql = require('graphql');
 const _ = require('lodash');
 const Book = require('../models/book');
 const Author = require('../models/author')
+const Publisher = require('../models/publisher')
 
 
 const { 
@@ -71,6 +72,23 @@ const AuthorType  = new GraphQLObjectType({
     })
 })
 
+const PublisherType = new GraphQLObjectType({
+    name: 'Publisher',
+    fields: () => ({
+        id: { type: GraphQLString },
+        name: { type: GraphQLString },
+        location: { type: GraphQLString },
+        books: {
+            type: new GraphQLList(BookType),
+            resolve( parent, args ){
+                return Book.find ({
+                    publisherId:parent.id
+                })
+            }
+        }
+    })
+})
+
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
@@ -91,6 +109,13 @@ const RootQuery = new GraphQLObjectType({
                 // args.id,
                 // return _.find(authors, { id: args.id })
                 return Author.findById(args.id)
+            }
+        },
+        publisher: {
+            type: PublisherType,
+            args: { id: {type: GraphQLID } },
+            resolve( parent, args){
+                return Publisher.findById(args.id)
             }
         },
         books: {
@@ -149,7 +174,8 @@ const Mutation = new GraphQLObjectType({
             args: {
                 name: { type: new GraphQLNonNull( GraphQLString ) },
                 genre: { type:  new GraphQLNonNull( GraphQLString ) },
-                authorId: { type:  new GraphQLNonNull( GraphQLID ) }
+                authorId: { type:  new GraphQLNonNull( GraphQLID ) },
+                publisherId: { type:  new GraphQLNonNull( GraphQLID ) }
             }, 
             resolve ( parent, args){
                 let book = new Book({
@@ -158,6 +184,20 @@ const Mutation = new GraphQLObjectType({
                     authorId: args.authorId
                 })
                 return book.save();
+            }
+        },
+        addPublisher: {
+            type: PublisherType,
+            args: {
+                name: { type:  new GraphQLNonNull( GraphQLString ) },
+                location: { type:  new GraphQLNonNull( GraphQLString ) } 
+            },
+            resolve ( parent, args){
+                let publisher = new Publisher({
+                    name: args.name,
+                    location: args.location
+                })
+                return publisher.save()
             }
         }
     }
