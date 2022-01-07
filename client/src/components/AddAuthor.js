@@ -1,39 +1,23 @@
 import React, { useState } from 'react'
 import { graphql } from 'react-apollo'
 import {flowRight as compose} from 'lodash';
-// import { getAuthorsQuery, addBookMutation, getBooksQuery } from '../queries/queries'
+import { addAuthorMutation } from '../queries/queries'
 
  
 
 const AddAuthor = (props) => {
 
     const [ authorName, setAuthorName ] = useState()
-    const [ authorAge, setAuthorAge ] = useState()
-
-
-    // function displayAuthors(){
-    //     var data = props.getAuthorsQuery;
-    //     if (data.loading) {
-    //         return (<option disabled>Loading Authors...</option>)
-    //     } else {
-    //         return data.authors.map(author => {
-    //             return(
-    //                 <option key={author.id} value={author.id}>{ author.name }</option>
-    //             )
-    //         })
-    //     }
-    // }
+    const [ authorAge, setAuthorAge ] = useState()  
 
     function handleSubmit(e){
         e.preventDefault(); 
-        // props.addBookMutation({ 
-        //     variables: {
-        //         name: bookName,
-        //         genre: genre,
-        //         authorId: authorId,
-        //     },
-        //     refetchQueries: [{ query: getBooksQuery }]
-        // })
+        props.addAuthorMutation({ 
+            variables: {
+                name: authorName,
+                age: authorAge,
+            },
+        })
         setAuthorName('');
         setAuthorAge('')
     }
@@ -70,7 +54,5 @@ const AddAuthor = (props) => {
 
 // Here we are binding several different queries to one component
 export default compose(
-    // graphql(getAuthorsQuery, {name: "getAuthorsQuery"}),
-    // graphql(addAuthorMutation, {name: "addAuthorMutation"}),
-
+    graphql(addAuthorMutation, {name: "addAuthorMutation"}),
 )( AddAuthor )
