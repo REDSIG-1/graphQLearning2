@@ -12,7 +12,7 @@ In server directory run this command `node app`
 This gets the express app up and running 
 Or better: `nodemon app` will obvs listen for changes :)
 
-Now go to `localhost:4000/graphql`
+Now go to:   localhost:4000/graphql
 
 As we have passed `graphiql: true` into the app.use function we will be able to interact with GQL using the graphiql tool!
 

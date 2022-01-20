@@ -15,21 +15,6 @@ const {
     GraphQLNonNull
 } = graphql;
 
-// var books = [
-//     { name: 'Name of the Wind', genre: 'Fantasy', id: '1', authorId: '1' },
-//     { name: 'The Final Empire', genre: 'Fantasy', id: '2', authorId: '2' },
-//     { name: 'The Hero of Ages', genre: 'Fantasy', id: '4', authorId: '2' },
-//     { name: 'The Long Earth', genre: 'Sci-Fi', id: '3', authorId: '3' },
-//     { name: 'The Colour of Magic', genre: 'Fantasy', id: '5', authorId: '3' },
-//     { name: 'The Light Fantastic', genre: 'Fantasy', id: '6', authorId: '3' },
-// ];
-
-// var authors = [
-//     { name: 'Patrick Rothfuss', age: 44, id: '1' },
-//     { name: 'Brandon Sanderson', age: 42, id: '2' },
-//     { name: 'Terry Pratchett', age: 66, id: '3' }
-// ];
-
 // Type relations!  SHowing GQL that books have authors
 const BookType  = new GraphQLObjectType({
     name: 'Book',
@@ -132,6 +117,13 @@ const RootQuery = new GraphQLObjectType({
                 // return authors;
                 return Author.find({})
             }
+        },
+        publishers: {
+            type: new GraphQLList(PublisherType),
+            resolve(parent, args){
+                // return authors;
+                return Publisher.find({})
+            }
         }
     }
 })
@@ -181,7 +173,8 @@ const Mutation = new GraphQLObjectType({
                 let book = new Book({
                     name: args.name,
                     genre: args.genre,
-                    authorId: args.authorId
+                    authorId: args.authorId,
+                    publisherId: args.publisherId
                 })
                 return book.save();
             }
