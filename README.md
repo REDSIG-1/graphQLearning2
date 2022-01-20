@@ -57,6 +57,6 @@ mutation {
 
 
 
-##### Current Eposide
+##### Current Task
 
-Episode 31 - wooooooooooooooo
+Adding a publisher from the web browser

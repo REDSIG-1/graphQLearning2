@@ -9,7 +9,7 @@ import BookList from './components/BookList'
 import AddBook from './components/AddBook'
 import Books from './components/Books'
 import AddAuthor from './components/AddAuthor'
-
+import AddPublisher from './components/AddPublisher'
 
 // apollo client setup
 const client = new ApolloClient({
@@ -24,6 +24,7 @@ function App() {
             <BookList />
             <AddBook />
             <AddAuthor />
+            <AddPublisher />
 
         </div>
       </ApolloProvider>

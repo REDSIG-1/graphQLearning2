@@ -4,6 +4,11 @@ const Book = require('../models/book');
 const Author = require('../models/author')
 const Publisher = require('../models/publisher')
 
+// This is the important file that will interact with the DB and actually get it saved there
+// It of course needs to import the models to get the data structure
+
+// Once this is done you will be able to load up Graphiql and get request working / things saved to db etc. 
+
 
 const { 
     GraphQLObjectType, 
@@ -15,7 +20,13 @@ const {
     GraphQLNonNull
 } = graphql;
 
+
+// =========================================
+//               GQL Objects  
+// =========================================
 // Type relations!  SHowing GQL that books have authors
+
+
 const BookType  = new GraphQLObjectType({
     name: 'Book',
     // The reason that we have the fields as a function is because we want to load ALL the types before doing relations
@@ -36,8 +47,7 @@ const BookType  = new GraphQLObjectType({
     })
 })
 
-// Type relations!  Showing GQL that authors have books
-
+// Authors have books
 const AuthorType  = new GraphQLObjectType({
     name: 'Author',
     fields: () => ({
@@ -57,6 +67,8 @@ const AuthorType  = new GraphQLObjectType({
     })
 })
 
+// Publishers have books
+// Maybe publishers have authors too??
 const PublisherType = new GraphQLObjectType({
     name: 'Publisher',
     fields: () => ({
@@ -74,6 +86,9 @@ const PublisherType = new GraphQLObjectType({
     })
 })
 
+// =========================================
+//               ROOT QUERIES 
+// =========================================
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
@@ -143,6 +158,9 @@ const RootQuery = new GraphQLObjectType({
 //     }
 // })
 
+// =========================================
+//               Mutations 
+// =========================================
 
 const Mutation = new GraphQLObjectType({
     name: 'Mutation',
